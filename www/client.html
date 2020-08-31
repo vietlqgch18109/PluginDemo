@@ -50,10 +50,19 @@
     <input type="button" name="" value="Take a Picture" onclick="takePicture()" />
     <input type="button" name="" value="test beep" onclick="callBeep()" />
     <div id="imageContainer"></div>
+    <div id="output"></div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
         app.initialize();
+        $(document).ready(function() {
+            $.getJSON("http://localhost:8080/course", function(result) {
+                $.each(result, function(i, field) {
+                    $("#output").append("Title: " + field.title  + " Price:" + field.price + "<br/>");
+                });
+            });
+        });
     </script>
 </body>
 

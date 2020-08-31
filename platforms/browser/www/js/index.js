@@ -77,3 +77,20 @@ function callBeep(){
     navigator.notification.beep(1);
     navigator.vibrate(3000);
 }
+function takePicture(){
+    navigator.camera.getPicture(onSuccess, onFail,{
+        quality:50,
+        allowEdit:true,
+        destinationType:Camera.DestinationType.FILE_URI,
+    })
+}
+function onSuccess(url){
+    alert(url);
+    //Get a handle to the image container div 
+    ic=document.getElementById('imageContainer');
+    //URL we received the picter now display inside this div
+    ic.innerHTML='<img src="'+url+'"width="50%"/>';
+}
+function onFail(message){
+    alert('Failed because:'+message);
+}
